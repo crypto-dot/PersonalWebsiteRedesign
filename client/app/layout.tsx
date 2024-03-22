@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { BioRhyme } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const bioRhyme = BioRhyme({ weight: ["800"], subsets: ["latin"]});
 
 export const metadata: Metadata = {
   title: "Carlos Arbizu's Portfolio Site",
@@ -16,23 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <nav>
-          <ul>
-            <li>
-              <a href="/about">About</a>
-            </li>
-            <li>
-              <a href="/projects">Projects</a>
-            </li>
-            <li>
-              <a href="/blog">Blog</a>
-            </li>
-            <li>
-              <a href="/contact">Contact</a>
-            </li>
-          </ul>
-        </nav>
+      <body>
         {children}
         </body>
     </html>
