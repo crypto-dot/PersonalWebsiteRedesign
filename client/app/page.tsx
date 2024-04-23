@@ -1,9 +1,15 @@
+'use client'
 import Image from "next/image";
 import Navigation from "./Components/Navigation/Navigation";
-export default function Home() {
+import { ReactHTMLElement, useRef } from "react";
+
+const Home = () => {
+  const mainElmRef = useRef<HTMLElement>(null);
   return (
-    <main className="flex flex-col items-center justify-between min-h-screen">
-      <Navigation />
+    <main className="" ref={mainElmRef}>
+      <Navigation ref={mainElmRef} />
+      <div>Test</div>
     </main>
   );
 }
+export default Home;

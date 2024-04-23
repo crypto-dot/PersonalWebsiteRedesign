@@ -1,8 +1,11 @@
-import React, { useState, useRef, ReactElement} from 'react'
-import Lottie from 'lottie-react';
+import React, { useState, useRef, ReactElement, forwardRef, ForwardedRef,ForwardRefExoticComponent, FC, RefAttributes,  RefObject} from 'react'
+import Lottie, {LottieRef} from 'lottie-react';
 import animationData from "../../../public/LottieAssets/HamburgerMenu/menu.json";
 import MenuIcon  from "../../../public/LottieAssets/HamburgerMenu/menu.svg";
-function NavButton(): ReactElement {
+interface NavButtonProperties{
+    (ref: RefObject<HTMLElement>): ReactElement
+  }
+const NavButton= React.forwardRef<NavButtonProperties>( (props, ref: RefObject<HTMLElement>): ReactElement => {
     const [isOpen, setOpen] = useState(false);
     const [isLoaded, setLoaded] = useState(false);
     MenuIcon as any;
@@ -18,18 +21,25 @@ function NavButton(): ReactElement {
         }
         lottieRef.current?.play();
     };
-    const lottieRef = useRef() as React.MutableRefObject<typeof Lottie>;
+    const lottieRef = useRef() as LottieRef;
 
     const handleLottieLoad = (): void => {
         setLoaded(true);
         lottieRef.current?.pause();
+        if(ref) {
+            ref.current.classList.toggle('nav-open', isOpen);
+        }
+
     }
     return (
-        <button className='h-fit' onClick={handleButtonClick} aria-label={"Open or close the mobile navigation menu"} aria-expanded={isOpen}>
-            <MenuIcon className='block__hamburger'/>
-            <Lottie className='block__hamburger h-10' lottieRef={lottieRef} loop={false} autoPlay={false} onDOMLoaded={handleLottieLoad} animationData={animationData} />
+        <button className='h-fit w-fit sticky right-0 left-full' onClick={handleButtonClick} aria-label={"Open or close the mobile navigation menu"} aria-expanded={isOpen}>
+            {
+                !isLoaded &&             
+                <MenuIcon className='block__hamburger'/>
+            }
+            <Lottie className='block__hamburger h-fit w-fit' lottieRef={lottieRef} loop={false} autoPlay={false} onDOMLoaded={handleLottieLoad} animationData={animationData} />
         </button>
     )
-}
+});
 
 export default NavButton
