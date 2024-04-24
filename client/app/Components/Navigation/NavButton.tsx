@@ -11,6 +11,7 @@ const NavButton= React.forwardRef<NavButtonProperties>( (props, ref: RefObject<H
     MenuIcon as any;
     const handleButtonClick = (): void => {
         setOpen(!isOpen);
+        ref?.current?.classList.toggle('overflow-hidden', !isOpen);
         if (isOpen) {
             // reverse animation
             lottieRef.current?.setDirection(-1);
@@ -26,10 +27,6 @@ const NavButton= React.forwardRef<NavButtonProperties>( (props, ref: RefObject<H
     const handleLottieLoad = (): void => {
         setLoaded(true);
         lottieRef.current?.pause();
-        if(ref) {
-            ref.current.classList.toggle('nav-open', isOpen);
-        }
-
     }
     return (
         <button className='h-fit w-fit sticky right-0 left-full' onClick={handleButtonClick} aria-label={"Open or close the mobile navigation menu"} aria-expanded={isOpen}>

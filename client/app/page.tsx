@@ -1,13 +1,11 @@
 'use client'
 import Image from "next/image";
-import Navigation from "./Components/Navigation/Navigation";
 import { ReactHTMLElement, useRef } from "react";
 
 const Home = () => {
-  const mainElmRef = useRef<HTMLElement>(null);
+  const bodyRef = useRef<HTMLElement>(null);
   return (
-    <main className="" ref={mainElmRef}>
-      <Navigation ref={mainElmRef} />
+    <main className="" ref={bodyRef}>
       <div>Test</div>
     </main>
   );

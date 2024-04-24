@@ -1,12 +1,12 @@
 'use client'
-import React, { ForwardedRef, ReactElement, MutableRefObject, forwardRef} from 'react'
+import React, { ForwardedRef, ReactElement, RefObject, forwardRef} from 'react'
 import { BioRhyme } from "next/font/google";
 import NavButton from './NavButton';
 
 const bioRhyme = BioRhyme({ weight: ["800"], subsets: ["latin"] });
 interface NavigationProperties{
-  prop: null,
-  ref: MutableRefObject<HTMLElement>
+
+  ref: RefObject<HTMLElement>
 }
 const Navigation = forwardRef<NavigationProperties>( (props,  ref): ReactElement => {
   return (
