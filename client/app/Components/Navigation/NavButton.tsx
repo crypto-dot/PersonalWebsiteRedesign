@@ -1,17 +1,17 @@
-import React, { useState, useRef, ReactElement, forwardRef, ForwardedRef,ForwardRefExoticComponent, FC, RefAttributes,  RefObject} from 'react'
+import React, { useState, useRef, ReactElement} from 'react'
 import Lottie, {LottieRef} from 'lottie-react';
 import animationData from "../../../public/LottieAssets/HamburgerMenu/menu.json";
 import MenuIcon  from "../../../public/LottieAssets/HamburgerMenu/menu.svg";
 interface NavButtonProperties{
-    (ref: RefObject<HTMLElement>): ReactElement
-  }
-const NavButton= React.forwardRef<NavButtonProperties>( (props, ref: RefObject<HTMLElement>): ReactElement => {
+    (setNavOpen: (bool: boolean) => void) : ReactElement;
+}
+const NavButton : NavButtonProperties = ({setNavOpen}): ReactElement => {
     const [isOpen, setOpen] = useState(false);
     const [isLoaded, setLoaded] = useState(false);
     MenuIcon as any;
     const handleButtonClick = (): void => {
         setOpen(!isOpen);
-        ref?.current?.classList.toggle('overflow-hidden', !isOpen);
+        setNavOpen(!isOpen);
         if (isOpen) {
             // reverse animation
             lottieRef.current?.setDirection(-1);
@@ -37,6 +37,6 @@ const NavButton= React.forwardRef<NavButtonProperties>( (props, ref: RefObject<H
             <Lottie className='block__hamburger h-fit w-fit' lottieRef={lottieRef} loop={false} autoPlay={false} onDOMLoaded={handleLottieLoad} animationData={animationData} />
         </button>
     )
-});
+};
 
 export default NavButton

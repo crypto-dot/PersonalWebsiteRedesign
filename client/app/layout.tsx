@@ -1,24 +1,24 @@
 'use client';
 import Head from "next/head";
-import type { Metadata } from "next";
 import { BioRhyme } from "next/font/google";
 import "./globals.css";
 import Navigation from "./Components/Navigation/Navigation";
 import { Footer } from "./Components/Footer/Footer";
-import { useRef } from "react";
+import {useState } from "react";
+import ClassNames from "classnames";
 const bioRhyme = BioRhyme({ weight: ["800"], subsets: ["latin"]});
-
-export const metadata: Metadata = {
-  title: "Carlos Arbizu's Portfolio Site",
-  description: "Fullstack Developer",
-};
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const bodyRef = useRef<HTMLElement>(null);
+  const [navOpen, setNavOpen] = useState(false);
+  const bodyClass = 
+    ClassNames({
+      "px-4 max-w-5xl ml-auto mr-auto": true,
+      'overflow-hidden': navOpen,
+    });
   return (
     <>
       <Head>
@@ -26,8 +26,8 @@ export default function RootLayout({
         <meta name="description" content={"Fullstack Developer"} />
       </Head>
       <html lang="en">
-        <body className="px-4 max-w-5xl ml-auto mr-auto" >
-          <Navigation ref={bodyRef} />
+        <body className={bodyClass} >
+          <Navigation setNavOpen={setNavOpen}  navOpen={navOpen}/>
           <main>
             {children}
           </main>

@@ -1,20 +1,24 @@
 'use client'
-import React, { ForwardedRef, ReactElement, RefObject, forwardRef} from 'react'
+import React, {ReactElement} from 'react'
 import { BioRhyme } from "next/font/google";
 import NavButton from './NavButton';
+import classNames from 'classnames';
 
 const bioRhyme = BioRhyme({ weight: ["800"], subsets: ["latin"] });
 interface NavigationProperties{
-
-  ref: RefObject<HTMLElement>
+    (setNavOpen: (bool: boolean) => void, navOpen: boolean): ReactElement;
 }
-const Navigation = forwardRef<NavigationProperties>( (props,  ref): ReactElement => {
+const Navigation: NavigationProperties = ( { setNavOpen, navOpen } ): ReactElement => {
+
+  const ulClass = classNames({
+    [`grid grid-cols-1 ${bioRhyme.className} text-[primary]`]: true,
+    'hidden': !navOpen,
+  })
   return (
-    <div className='flex justify-between w-full flex-col sticky top-0 pt-4'>
+    <nav className='flex justify-between w-full flex-col sticky top-0 mt-4 backdrop-blur  bg-white/5'>
       <div className='relative'>
-        <NavButton ref={ref}/>
-        <nav>
-          <ul className={`grid grid-cols-1 ${bioRhyme.className} text-[primary]`}>
+        <NavButton setNavOpen={setNavOpen}/>
+          <ul className={ulClass}>
             <li className='relative'>
               <a href="/about">About</a>
             </li>
@@ -28,10 +32,9 @@ const Navigation = forwardRef<NavigationProperties>( (props,  ref): ReactElement
               <a href="/contact">Contact</a>
             </li>
           </ul>
-        </nav>
       </div>
-    </div>
+    </nav>
   );
-});
+};
 
 export default Navigation
