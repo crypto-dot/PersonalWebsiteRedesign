@@ -16,7 +16,7 @@ export default function RootLayout({
   const [navOpen, setNavOpen] = useState(false);
   const bodyClass = 
     ClassNames({
-      "px-4 max-w-5xl ml-auto mr-auto": true,
+      "max-w-5xl": true,
       'overflow-hidden': navOpen,
     });
   return (
@@ -28,11 +28,11 @@ export default function RootLayout({
       <html lang="en">
         <body className={bodyClass} >
           <Navigation setNavOpen={setNavOpen}  navOpen={navOpen}/>
-          <main>
+          <main className="px-4">
             {children}
           </main>
           <Footer/>
-          </body>
+        </body>
       </html>
     </>
   );

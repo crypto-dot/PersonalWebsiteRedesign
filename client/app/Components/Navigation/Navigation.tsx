@@ -10,12 +10,19 @@ interface NavigationProperties{
 }
 const Navigation: NavigationProperties = ( { setNavOpen, navOpen } ): ReactElement => {
 
+
   const ulClass = classNames({
-    [`grid grid-cols-1 ${bioRhyme.className} text-[primary]`]: true,
+    [`grid grid-cols-1 ${bioRhyme.className} text-[primary] absolute w`]: true,
     'hidden': !navOpen,
-  })
+  });
+  const navClass = classNames({
+    ["before:content-[''] before:block before:absolute before:top-0 before:right-0 before:w-full before:h-4"]: true,
+    'flex justify-between w-full flex-col sticky top-4 mt-4 px-4': true,
+    'backdrop-blur bg-white/5 h-screen': navOpen,
+    'before:backdrop-blur before:bg-white/5': navOpen
+  });
   return (
-    <nav className='flex justify-between w-full flex-col sticky top-0 mt-4 backdrop-blur  bg-white/5'>
+    <nav className={navClass}>
       <div className='relative'>
         <NavButton setNavOpen={setNavOpen}/>
           <ul className={ulClass}>
