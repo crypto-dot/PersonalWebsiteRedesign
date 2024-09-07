@@ -12,33 +12,36 @@ const Navigation: NavigationProperties = ( { setNavOpen, navOpen } ): ReactEleme
 
 
   const ulClass = classNames({
-    [`grid grid-cols-1 ${bioRhyme.className} text-[primary] absolute w`]: true,
+    [`grid grid-cols-1 ${bioRhyme.className} text-[primary] absolute w `]: true,
     'hidden': !navOpen,
   });
   const navClass = classNames({
-    ["before:content-[''] before:block before:absolute before:top-0 before:right-0 before:w-full before:h-4"]: true,
-    'flex justify-between w-full flex-col sticky top-4 mt-4 px-4': true,
-    'backdrop-blur bg-white/5 h-screen': navOpen,
-    'before:backdrop-blur before:bg-white/5': navOpen
+    'flex justify-between w-full sticky h-0 flex-col top-0 px-10': true,
   });
+  const navGlassPane = classNames({
+    'backdrop-blur bg-white/5 -z-10 w-full h-screen absolute top-0 left-0': true,
+    'hidden': !navOpen,});
   return (
     <nav className={navClass}>
-      <div className='relative'>
+      <div className='relative pt-4'>
         <NavButton setNavOpen={setNavOpen}/>
           <ul className={ulClass}>
-            <li className='relative'>
+            <li className='relative pb-5'>
               <a href="/about">About</a>
             </li>
-            <li className='relative'>
+            <li className='relative pb-5'>
               <a href="/projects">Projects</a>
             </li>
-            <li className='relative'>
+            <li className='relative pb-5'>
               <a href="/blog">Blog</a>
             </li>
-            <li className='relative'>
+            <li className='relative pb-5'>
               <a href="/contact">Contact</a>
             </li>
           </ul>
+      </div>
+      <div className={navGlassPane}>
+
       </div>
     </nav>
   );

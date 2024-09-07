@@ -22,13 +22,13 @@ export default function RootLayout({
   return (
     <>
       <Head>
-        <title>Carlos Arbizu's Portfolio Site</title>
-        <meta name="description" content={"Fullstack Developer"} />
+        <title>Carlos's Portfolio Site</title>
+        <meta name="description" content={"Portfolio site of Fullstack Developer"} />
       </Head>
       <html lang="en">
         <body className={bodyClass} >
           <Navigation setNavOpen={setNavOpen}  navOpen={navOpen}/>
-          <main className="px-4">
+          <main className="px-10 pt-[3.375rem]">
             {children}
           </main>
           <Footer/>
