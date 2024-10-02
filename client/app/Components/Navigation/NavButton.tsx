@@ -1,11 +1,12 @@
-import React, { useState, useRef, ReactElement, FC, SVGProps} from 'react'
+import React, { useState, useRef, ReactElement, FC, SVGProps, Dispatch, SetStateAction, JSXElementConstructor} from 'react'
 import Lottie, {LottieRef} from 'lottie-react';
 import animationData from "../../../public/LottieAssets/HamburgerMenu/menu.json";
 import MenuIcon  from "../../../public/LottieAssets/HamburgerMenu/menu.svg";
-interface NavButtonProperties{
-    (setNavOpen: (bool: boolean) => void) : ReactElement;
+
+interface NavButtonProperties {
+    setNavOpen: Dispatch<SetStateAction<boolean>>;
 }
-const NavButton : NavButtonProperties = ({setNavOpen}): ReactElement => {
+const NavButton: React.FC<NavButtonProperties> = ({setNavOpen})  => {
     const [isOpen, setOpen] = useState(false);
     const [isLoaded, setLoaded] = useState(false);
     MenuIcon as FC<SVGProps<SVGElement>>;

@@ -1,14 +1,15 @@
 'use client'
-import React, {ReactElement} from 'react'
+import React, {ReactElement, FC,  Dispatch, SetStateAction} from 'react'
 import { BioRhyme } from "next/font/google";
 import NavButton from './NavButton';
 import classNames from 'classnames';
 
 const bioRhyme = BioRhyme({ weight: ["800"], subsets: ["latin"] });
 interface NavigationProperties{
-    (setNavOpen: (bool: boolean) => void, navOpen: boolean): ReactElement;
+  setNavOpen: Dispatch<SetStateAction<boolean>>;
+  navOpen: boolean;
 }
-const Navigation: NavigationProperties = ( { setNavOpen, navOpen } ): ReactElement => {
+const Navigation: React.FC<NavigationProperties> = ( { setNavOpen, navOpen } ) => {
 
 
   const ulClass = classNames({

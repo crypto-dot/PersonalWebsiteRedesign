@@ -1,12 +1,13 @@
 'use client';
 import Head from "next/head";
-import { BioRhyme } from "next/font/google";
+import { Playfair_Display, Roboto} from "next/font/google";
 import "./globals.css";
 import Navigation from "./Components/Navigation/Navigation";
 import { Footer } from "./Components/Footer/Footer";
 import {useState } from "react";
 import ClassNames from "classnames";
-const bioRhyme = BioRhyme({ weight: ["800"], subsets: ["latin"]});
+const playfair = Playfair_Display({ weight: ["900"], subsets: ["latin"], fallback: ['serif']});
+const roboto = Roboto({ weight: ["400"], subsets: ["latin"], fallback: ['sans-serif']});
 
 export default function RootLayout({
   children,
