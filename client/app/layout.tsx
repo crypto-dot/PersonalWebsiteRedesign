@@ -15,11 +15,6 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const [navOpen, setNavOpen] = useState(false);
-  const bodyClass = 
-    ClassNames({
-      "max-w-5xl": true,
-      'overflow-hidden': navOpen,
-    });
   return (
     <>
       <Head>
@@ -27,7 +22,7 @@ export default function RootLayout({
         <meta name="description" content={"Portfolio site of Fullstack Developer"} />
       </Head>
       <html lang="en">
-        <body className={bodyClass} >
+        <body  >
           <Navigation setNavOpen={setNavOpen}  navOpen={navOpen}/>
           <main className="px-10 pt-[3.375rem]">
             {children}

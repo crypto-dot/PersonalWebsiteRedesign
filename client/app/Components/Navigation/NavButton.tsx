@@ -30,7 +30,7 @@ const NavButton: React.FC<NavButtonProperties> = ({setNavOpen})  => {
         lottieRef.current?.pause();
     }
     return (
-        <button className='h-fit w-fit sticky right-0 left-full backdrop-blur bg-white/5' onClick={handleButtonClick} aria-label={"Open or close the mobile navigation menu"} aria-expanded={isOpen}>
+        <button className='h-fit w-fit sticky right-0 left-full backdrop-blur bg-white/5 md:hidden' onClick={handleButtonClick} aria-label={"Open or close the mobile navigation menu"} aria-expanded={isOpen}>
             {
                 !isLoaded &&             
                 <MenuIcon className='block__hamburger'/>
